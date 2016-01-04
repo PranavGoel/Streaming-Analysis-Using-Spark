@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Analyzing Music Trends in Twitter Stream">
+    <meta name="author" content="Abhinav Sood">
+
+    <title>Groovy Bear: Analyzing Music Trends in Twitter Stream</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Timeline CSS -->
+    <link href="../dist/css/timeline.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="../bower_components/morrisjs/morris.css" rel="stylesheet">
+    
+    <!-- Groovy Bear Stylesheet -->
+    <link href="../dist/css/style.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Groovy Bear</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+                
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-twitter fa-fw"></i> Tweets Streamed
+                                    <span class="pull-right text-muted small">10,0001</span>
+                                </div>
+                            </a>
+                        </li>
+                        
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-tasks fa-fw"></i> Groovy Tweets
+                                    <span class="pull-right text-muted small">8,001</span>
+                                </div>
+                            </a>
+                        </li>
+                        
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>Artists Analyzed </strong>
+                                <i class="fa fa-angle-right"> 301</i>
+                            </a>
+                        </li>
+                        
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>Songs Analyzed </strong>
+                                <i class="fa fa-angle-right"> 1,001</i>
+                            </a>
+                        </li>
+                        
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>Genres Identified </strong>
+                                <i class="fa fa-angle-right" > 35</i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-alerts -->
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> <strong>Team</strong></a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i>LinkedIn</a>
+                        <li class="divider"></li>
+                            
+                        <li><a href="http://ca.linkedin.com/in/abhinavsood"><i class="fa fa-linkedin fa-fw"></i> Abhinav</a></li>
+                        <li><a href="https://www.linkedin.com/profile/view?id=AAkAAAnQW-0BEIFT3_8De167vL72R4XveG1DDN4"><i class="fa fa-linkedin fa-fw"></i> Pranav</a>
+                        </li>
+                        
+                        <li class="divider"></li>
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i>Facebook</a>
+                        <li class="divider"></li>
+                        
+                        <li><a href="http://facebook.com/abhinavsood"><i class="fa fa-facebook fa-fw"></i> Abhinav</a></li>
+                        <li><a href="http://facebook.com/pranav.goel.31"><i class="fa fa-facebook fa-fw"></i> Pranav</a>
+                        
+                        
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <!-- <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                            </div> -->
+                            <!-- /input-group -->
+                        <!-- </li> -->
+                        <li>
+                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> About<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#">Groovy Bear</a>
+                                </li>
+                                <li>
+                                    <a href="#">Team</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Groovy Dashboard</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-comments fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">26</div>
+                                    <div>Tweets Streamed</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a> -->
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-tasks fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">12</div>
+                                    <div>Tweets Processed</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a> -->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="panel panel-yellow">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-users fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">124</div>
+                                    <div>Artists Identified!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a> -->
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="panel panel-red">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-music fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">13</div>
+                                    <div>Songs Identified!</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+<!--                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a> -->
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-volume-up fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">13</div>
+                                    <div>Genres Identified!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a> -->
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i> Trending Genres
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="row panel-body ">
+                            
+                            <div class="col-md-10">
+                                <canvas id="canvas"></canvas>
+                            </div>
+                            
+                            <div class="col-md-2">
+                                <div id="legend"></div>
+                            </div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                    
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-clock-o fa-fw"></i> Timeline
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <ul class="timeline">
+                                <li>
+                                    <div class="timeline-badge"><i class="fa fa-hashtag"></i>
+                                    </div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h4 class="timeline-title">Data Collection</h4>
+                                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> Twitter Streaming</small>
+                                            </p>
+                                        </div>
+                                        <div class="timeline-body">
+                                            <p>Implemented Twitter Streaming using Apache Spark to collect tweets with hashtag #NowPlaying</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="timeline-inverted">
+                                    <div class="timeline-badge warning"><i class="fa fa-cogs"></i>
+                                    </div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h4 class="timeline-title">Data Cleansing </h4>
+                                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> Preprocessing: Remove noise from tweets</small>
+                                        </div>
+                                        <div class="timeline-body">
+                                            <p>Preprocessed data to identify songs and artists being talked about in the tweets. Made some <i>Groovy</i> tweets. </p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="timeline-badge danger"><i class="fa fa-bomb"></i>
+                                    </div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h4 class="timeline-title">More Data!</h4>
+                                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> iTunes Search API integration</small>
+                                        </div>
+                                        <div class="timeline-body">
+                                            <p>Identify genres for artists and/or songs identified in the preprocessed tweets using iTunes Search API and Apple iTunes Enterprise Partner Feed (disk based caching of request responses to minimize network IO)</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="timeline-inverted">
+                                    <div class="timeline-badge info"><i class="fa fa-bar-chart-o"></i></div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h4 class="timeline-title">Data Analysis</h4>
+                                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> Tweets be tellin' us like..</small>
+                                        </div>
+                                        <div class="timeline-body">
+                                            <p>The most popular genres in any given hour, the 10 most popular songs and artists in genres being talked about, etc.</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="timeline-badge info"><i class="fa fa-area-chart"></i>
+                                    </div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h4 class="timeline-title">Visualizations</h4>
+                                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> Ivan Turgunev, <i>'Fathers and Sons', 1861</i></small>
+                                        </div>
+                                        <div class="timeline-body">
+                                            <p><blockquote cite="Ivan Turgunev">
+                                                "The drawing shows me at one glance what might be spread over ten pages in a book."
+                                            </blockquote></p>
+                                            
+                                            <hr>
+                                            <p>We display the time-series of genres to which the music in tweets belongs to, in any given hour.</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="timeline-inverted">
+                                    <div class="timeline-badge info"><i class="fa fa-keyboard-o"></i></div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h4 class="timeline-title">Technology Used</h4>
+                                        </div>
+                                        <div class="timeline-body">
+                                            <p><ul>
+                                                <li>Apache Spark - Spark Streaming, Spark Python, Spark SQL</li>
+                                                <li>Hadoop and HDFS</li>
+                                                <li>Python, PyPy </li>
+                                                <li>HTML, CSS and Javascript (jQuery, AJAX, ChartingJS), JSON</li>
+                                                <li>Apple iTunes Search API, Apple Enterprise Partner Feed (relational and flat)</li>
+                                            </ul></p>
+                                        </div>
+                                    </div>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-8 -->
+               
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+    
+    <!-- Sood: Include ChartJS --> 
+    <script src="../dist/js/Chart.min.js"></script>
+    
+    <!-- Sood: Include Custom Groovy JS --> 
+    <script src="../dist/js/groovybear.js"></script>
+    
+    
+
+</body>
+
+</html>

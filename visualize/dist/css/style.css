@@ -1,0 +1,10 @@
+#legend ul li {
+    list-style-type: none;
+}
+
+#legend ul li span{
+    display: inline-block !important;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+}
